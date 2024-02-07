@@ -16,7 +16,7 @@ class mojWatek implements Runnable
 
     //poczatek wykonywania nowego watku
     @Override
-    public void main()
+    public void run()
     {
         System.out.println(wtk.getName() + " startuje.");
         try
@@ -37,7 +37,7 @@ class mojWatek implements Runnable
 }
 
 public class Main {
-    public static void main(String args)
+    public static void main(String[] args)
     {
         System.out.println("Moj watek startuje.");
 
@@ -46,14 +46,15 @@ public class Main {
         mojWatek mw2 = new mojWatek("watek 2");
         mojWatek mw3 = new mojWatek("watek 3");
 
-        do
-        {
-            Thread.sleep(100);
-        }
-        catch(InterruptedException exc)
-        {
-            System.out.println("glowny watek zostal przerwany.");
-        } while (mw1.licznik < 10 || mw2.licznik < 10 || mw3.licznik < 10);
+        do {
+            try
+            {
+                Thread.sleep(100);
+            } catch (InterruptedException exc)
+            {
+                System.out.println("glowny watek zostal przerwany.");
+            }
+        }while (mw1.licznik < 10 || mw2.licznik < 10 || mw3.licznik < 10) ;
 
         System.out.println("glowny watek zostal zakonczony.");
     }
